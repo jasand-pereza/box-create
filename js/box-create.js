@@ -1,6 +1,6 @@
 var css_scafold = null;
 
-$(function(j) {
+$(function() {
 
   var grid_map = new Array();
   var last_item_selected;
@@ -61,7 +61,6 @@ $(function(j) {
         start: function(event, ui) {
           is_resizing = true;
           $(this).css('box-shadow', '0px 0px 21px 1px #000');
-          //$(this).get_box_controls('hide');
         },
         stop: function(event, ui) {
           is_resizing = false;
@@ -70,7 +69,6 @@ $(function(j) {
               'left': 0,
               'top': 0,
               'position': 'relative',
-              //'box-shadow'   : 'none'
             });
           }
         }
@@ -91,6 +89,7 @@ $(function(j) {
     $this.css({
       'margin': 0
     });
+    
     release_item($this);
 
     $this.on('mouseout', function(e) {
@@ -117,7 +116,6 @@ $(function(j) {
     $this.on('dblclick', function(e) {
       var $this = $(this);
       if ($(document).find('#temp_edit_box').length > 0) return;
-
       if (e.shiftKey == true) {
         $('body').prepend('<input type="text" id="temp_edit_box" name="temp" class="temp" style="width: ' + ($this.width() + 20) + 'px;" value ="' + $(this).text() + '"/>');
         $('#temp_edit_box').css({
@@ -170,7 +168,11 @@ $(function(j) {
         $this.wrap('<div class="temp_wrap"></div>');
         js_php('loader', 'acquire', args, function(data) {
           $('body').find('.temp_wrap *').remove();
-          $('body').find('.temp_wrap').append(data).find('.hidden_element').wrap('<div class="textbox menu-item"></div>').parent().resizable().draggable().find('.hidden_element').removeClass('hidden_element').parent().unwrap('.temp_wrap');
+          $('body').find('.temp_wrap')
+          .append(data).find('.hidden_element')
+          .wrap('<div class="textbox menu-item"></div>')
+          .parent().resizable().draggable().find('.hidden_element')
+          .removeClass('hidden_element').parent().unwrap('.temp_wrap');
         });
       })
     });
@@ -184,12 +186,10 @@ $(function(j) {
             'left': 0,
             'top': 0,
             'position': 'relative'
-            //'border'   :  ($(this).is('div')) ? '#000 solid thin' : 'none'
           });
         }
       }
     });
-
 
     $this.on('mouseover', function(e) {
       if ($(e.target).hasClass('grid-element')) {
@@ -215,7 +215,12 @@ $(function(j) {
 
   $.fn.clone_box = function() {
     ele_inc++;
-    $(this).clone().attr('id', 'el_id_' + ele_inc).resizable().resizable('destroy').draggable().draggable('destroy').set_insertion_defaults().insertAfter($(this));
+    
+    $(this).clone().attr('id', 'el_id_' + ele_inc)
+    .resizable().resizable('destroy')
+    .draggable().draggable('destroy')
+    .set_insertion_defaults().insertAfter($(this));
+    
     return $('#el_id_' + ele_inc);
   }
 
@@ -243,15 +248,12 @@ $(function(j) {
       });
       $o.removeClass('f-btn').addClass('medium').addClass('button').text('a button');
     }
-
     if ($o.hasClass('eight-c')) {
       $o.removeClass('eight-c').addClass('eight').addClass('columns');
     }
-
     if ($o.hasClass('six-c')) {
       $o.removeClass('six-c').addClass('six').addClass('columns').css('height', 'auto');
     }
-
     if ($o.hasClass('self_createdbox')) {
       $o.attr('style', $o.attr('style').replace(/background(.*)/, ''));
       $o.find('span').remove();
@@ -261,9 +263,7 @@ $(function(j) {
 
 
   $(document).mousedown(function(e) {
-
     if (e.metaKey) {
-
       $('<input name="gg" id="element_activator" class="ui-element" value="text">').prependTo('body');
       $('#element_activator').css({
         'left': e.pageX - 50,
@@ -271,16 +271,7 @@ $(function(j) {
         'position': 'absolute',
         'z-index': '4000'
       });
-/* setTimeout(function(){ 
- $('#colorwheel').css({
- 'left' : e.pageX - 50,
- 'top'  : e.pageY - 60,
- 'position' : 'absolute',
- 'z-index' : '4000',
- }).show();
- },100) */
     }
-
 
     if ($(e.target).attr('id') == 'temp_edit_box') return;
     if ($main.find('.create_box').length > 1) return false;
@@ -374,7 +365,11 @@ $(function(j) {
         $o.data('excludeBox', $gm.attr('id'));
         if (!$o.hasClass('grid-element')) {
           ele_inc++;
-          $o.clone().removeClass('create_box').data('excludeBox', $o.data('excludeBox')).set_insertion_defaults().appendTo($gm);
+          
+          $o.clone().removeClass('create_box')
+          .data('excludeBox', $o.data('excludeBox'))
+          .set_insertion_defaults().appendTo($gm);
+          
           find_home($o);
         } else {
           $o.appendTo($gm);
@@ -390,15 +385,11 @@ $(function(j) {
 
 
   function control_zindex($o, direction) {
-
     var current_zindex = parseInt($o.css('z-index'));
     next_highest_depth = current_zindex + 2;
     $('#menu .menu-item').css('z-index', next_highest_depth);
-
     if (direction == 'increase') $o.css('z-index', current_zindex + 1);
-
     if (direction == 'decrease') $o.css('z-index', current_zindex - 1);
-
   }
 
   function light(id, callback) {
@@ -417,31 +408,24 @@ $(function(j) {
 
 
   function is_offset_inside($a, $b, buffer) {
-
     var t1 = $a.offset().top;
     var b1 = t1 + $a.height();
     var l1 = $a.offset().left
     var r1 = l1 + $a.width();
-
     var t2 = $b.offset().top;
     var b2 = t2 + $b.height();
     var l2 = $b.offset().left
-
     var r2 = l2 + $b.width();
-
     return (t1 > t2 && b1 < b2 && l1 > l2 && r1 < r2) ? true : false;
   }
-
 
   $('.menu-item').draggable();
 
   $('.menu-item').on('mouseup', function(e) {
-
     if ($(this).attr('id') == 'snip-add') {
       add_snippet();
     }
     if ($(e.target).hasClass('grid-element')) last_item_selected = $(e.target);
-
     scan_map($(this));
   })
 
@@ -449,15 +433,12 @@ $(function(j) {
     if (e.which == 221 && e.shiftKey == true) {
       control_zindex($(last_item_selected), 'increase');
     }
-
     if (e.which == 219 && e.shiftKey == true) {
       control_zindex($(last_item_selected), 'decrease');
     }
-
     if (e.which == 37 && e.shiftKey == true) {
       $(last_item_selected).control_float('left');
     }
-
     if (e.which == 39 && e.shiftKey == true) {
       $(last_item_selected).control_float('right');
     }
@@ -469,10 +450,6 @@ $(function(j) {
 
   set_grid();
 
-  $('#colorpicker').farbtastic(function callback(color) {
-    $l = $(last_item_selected);
-    $l.css('background', color);
-  });
 
   $.fn.follow = function($o, x, y) {
     var $this = $(this)

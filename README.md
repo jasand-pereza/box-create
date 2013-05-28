@@ -6,9 +6,9 @@ DOM elements can be created on the spot or existing snippets can be dragged onto
 
 Since this is a work in progress, there are a number bugs that still need to fixed.
 
-## Demo 
-<a href="http://www.jasandpereza.com/labs/box-create" target="_blank">http://www.jasandpereza.com/labs/box-create</a>
+#### Demo
+[http://www.jasandpereza.com/labs/box-create](http://www.jasandpereza.com/labs/box-create)
 
-## How to Use
+#### How to Use 
 * Drag a snippet from the top and release to the grid below and the html snippet will be added to the DOM.
 * **Mouse down + hold shift, drag and release** to create a DIV in the grid below.

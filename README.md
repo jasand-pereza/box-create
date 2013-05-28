@@ -1,4 +1,4 @@
 box-create
 ==========
 
-Experimental, in progress ui that allow the creation of web elements. This was originally created for use in rapid prototyping of responsive website pages.
+An Experimental, in progress ui that allow the creation of web elements. This was originally created for use in rapid prototyping of responsive website pages.

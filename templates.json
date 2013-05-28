@@ -1,0 +1,10 @@
+{
+  "templates" : [
+    { "name" : "div" },
+    { "name" : "input" },
+    { "name" : "button" },
+    { "name" : "text_area" },
+    { "name" : "lorem ipsum" },
+    { "name"  : "f-navbar" }
+  ]
+}

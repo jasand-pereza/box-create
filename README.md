@@ -6,5 +6,5 @@ DOM elements can be created on the spot or existing snippets can be dragged onto
 
 Since this is a work in progress, there are a number bugs that still need to fixed.
 
-Demo
+Demo <br>
 <a href="http://www.jasandpereza.com/labs/box-create" target="_blank">http://www.jasandpereza.com/labs/box-create</a>
